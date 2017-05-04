@@ -7,6 +7,7 @@ import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import { ControlLabel, FormControl, HelpBlock, FormGroup, Checkbox,
 Radio, Button, Tabs, Tab } from 'react-bootstrap';
 import { createStore } from 'redux'
+import PropTypes from 'prop-types'
 
 // a "reducer" that handle some events and return a state
 function placementReducer(state = [], action) {
@@ -139,20 +140,11 @@ class ContributorTable extends React.Component {
             expandComponent={ this.expandComponent }
             selectRow={ selectRowProp }
 >
-            <TableHeaderColumn dataField='id' isKey={ true }
-hidden>ID</TableHeaderColumn>
-            <TableHeaderColumn dataField='name' dataSort={ false }
-filter={ { type: 'TextFilter', delay: 10 } } expandable={ false }
->Publisher</TableHeaderColumn>
-            <TableHeaderColumn dataField='url' dataSort={ false }
-filter={ { type: 'TextFilter', delay: 10 } } expandable={ false }
->URL</TableHeaderColumn>
-            <TableHeaderColumn dataField='moz_da' dataSort={ true }
-filter={ { type: 'TextFilter', delay: 10 } } expandable={ false }>DA</
-TableHeaderColumn>
-            <TableHeaderColumn dataField='status' dataSort={ true }
-filter={ { type: 'TextFilter', delay: 10 } } expandable={ false }
->Status</TableHeaderColumn>
+            <TableHeaderColumn dataField='id' isKey={ true } hidden>ID</TableHeaderColumn>
+            <TableHeaderColumn dataField='name' dataSort={ false } filter={ { type: 'TextFilter', delay: 10 } } expandable={ false }>Publisher</TableHeaderColumn>
+            <TableHeaderColumn dataField='url' dataSort={ false } filter={ { type: 'TextFilter', delay: 10 } } expandable={ false }>URL</TableHeaderColumn>
+            <TableHeaderColumn dataField='moz_da' dataSort={ true } filter={ { type: 'TextFilter', delay: 10 } } expandable={ false }>DA</TableHeaderColumn>
+            <TableHeaderColumn dataField='status' dataSort={ true } filter={ { type: 'TextFilter', delay: 10 } } expandable={ false }>Status</TableHeaderColumn>
           </BootstrapTable>
       </div>
 ); }
@@ -166,11 +158,11 @@ function FieldGroup({ id, label, help, ...props }) {
     </FormGroup>
   );
 }
-const NavDropdownExample = React.createClass({
+class NavDropdown extends React.Component {
   handleSelect(eventKey) {
     event.preventDefault();
     alert(`selected ${eventKey}`);
-},
+  }
   render() {
     return (
       <Tabs defaultActiveKey={2} id="uncontrolled-tab-example">
@@ -182,12 +174,13 @@ const NavDropdownExample = React.createClass({
             </Tab>
       </Tabs>
 );
-} });
+} 
+};
 class HomeView extends React.Component {
     static propTypes = {
-        statusText: React.PropTypes.string,
-        userName: React.PropTypes.string
-};
+        statusText: PropTypes.string,
+        userName: PropTypes.string
+    };
     static defaultProps = {
         statusText: '',
         userName: ''
@@ -196,7 +189,7 @@ class HomeView extends React.Component {
         event.preventDefault()
         var el = event.target
         console.log(el)
-}
+    }
     render() {
         return (
             <div className="container">
@@ -205,27 +198,22 @@ class HomeView extends React.Component {
                     {this.props.statusText ?
                         <div className="alert alert-info">
                             {this.props.statusText}
-                        </div>
-:
-null }
+                        </div>:null }
 </div>
     <form>
         <FieldGroup
           id="article_title"
           type="text"
           label="Article Title"
-          placeholder="Enter article title"
-/>
+          placeholder="Enter article title"/>
         <FormGroup controlId="formControlsTextarea">
           <ControlLabel>Article Description</ControlLabel>
-          <FormControl componentClass="textarea" placeholder="Enter
-article description" />
-</FormGroup>
-        <Button type="submit" onClick={this.handleClick.bind(this)}
-className='btn btn-success'>Submit</Button>
+          <FormControl componentClass="textarea" placeholder="Enter article description" />
+        </FormGroup>
+        <Button type="submit" onClick={this.handleClick.bind(this)} className='btn btn-success'>Submit</Button>
     </form>
     <SelectedPlacements />
-    <NavDropdownExample />
+    <NavDropdown />
 </div> );
 } }
 const mapStateToProps = (state) => {
