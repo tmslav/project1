@@ -7,24 +7,13 @@ import { bindActionCreators } from 'redux'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import { ControlLabel, FormControl, HelpBlock, FormGroup, Checkbox,Radio, Button, Tabs, Tab } from 'react-bootstrap';
 import PropTypes from 'prop-types'
-import {getPlacements} from '../../../redux/modules/placements'
+import {getPlacements, addPlacement, removePlacement,addPublisher,removePublisher} from '../../../redux/modules/placements'
 import { Provider } from 'react-redux'
 
 const statusType = {
   0: 'matching',
   1: 'publisher-submitted',
   2: 'publisher-rejected'
-}
-
-function onRowSelect(row, isSelected, e) {
-  debugger
-}
-
-const selectRowProp = {
-  mode: 'checkbox',
-  clickToSelect: true,
-  bgColor: 'lightblue',
-  onSelect: onRowSelect,
 }
 
 class SelectedPlacements extends React.Component {
@@ -51,16 +40,30 @@ class SelectedPlacements extends React.Component {
 class PlacementTable extends React.Component {
   constructor(props) {
     super(props);
+    this.selectRowProp = {
+      mode: 'checkbox',
+      clickToSelect: true,
+      bgColor: 'lightblue',
+      onSelect: this.onRowSelect.bind(this),
+    }
   }
-  isExpandableRow(row) {
+  isExpandableRow (row) {
     return true
     if (row.id < 3) return true;
     else return false;
   }
-  expandComponent(row) {
+  expandComponent (row) {
     return (
       <div data={ row.expand } />
     )
+  }
+  onRowSelect(row, isSelected, e) {
+    if ( isSelected ) {
+      this.props.add_placement(row)
+    }
+    else {
+      this.props.remove_placement(row)
+    }
   }
   render() {
     const options = {
@@ -78,7 +81,7 @@ class PlacementTable extends React.Component {
             <BootstrapTable
               data = { data }
               options={ options }
-              selectRow={ selectRowProp }>
+              selectRow={ this.selectRowProp }>
               <TableHeaderColumn dataField='id' isKey={ true }hidden>ID</TableHeaderColumn>
               <TableHeaderColumn dataField='company_name' dataSort={ true } filter={ { type: 'TextFilter', delay: 10 } } expandable={ false }>Company Name</TableHeaderColumn>
               <TableHeaderColumn dataField='target_da_range' dataSort={ true } filter={ { type: 'TextFilter', delay: 10 } } expandable={ false }>DA Range</TableHeaderColumn>
@@ -96,6 +99,12 @@ class PlacementTable extends React.Component {
 class ContributorTable extends React.Component {
   constructor(props) {
     super(props);
+    this.selectRowProp = {
+      mode: 'checkbox',
+      clickToSelect: true,
+      bgColor: 'lightblue',
+      onSelect: this.onRowSelect.bind(this),
+    }
   }
   isExpandableRow(row) {
     if (row.id < 3) return true;
@@ -105,6 +114,14 @@ class ContributorTable extends React.Component {
     return (
       <div data={ row.expand } />
     );
+  }
+  onRowSelect(row, isSelected, e) {
+    if ( isSelected ) {
+      this.props.add_publisher(row)
+    }
+    else {
+      this.props.remove_publisher(row)
+    }
   }
   render() {
     const options = {
@@ -118,7 +135,7 @@ class ContributorTable extends React.Component {
             options={ options }
             expandableRow={ this.isExpandableRow }
             expandComponent={ this.expandComponent }
-            selectRow={ selectRowProp }>
+            selectRow={ this.selectRowProp }>
             <TableHeaderColumn dataField='id' isKey={ true } hidden>ID</TableHeaderColumn>
             <TableHeaderColumn dataField='name' dataSort={ false } filter={ { type: 'TextFilter', delay: 10 } } expandable={ false }>Publisher</TableHeaderColumn>
             <TableHeaderColumn dataField='url' dataSort={ false } filter={ { type: 'TextFilter', delay: 10 } } expandable={ false }>URL</TableHeaderColumn>
@@ -151,10 +168,16 @@ class NavDropdown extends React.Component {
     return (
       <Tabs defaultActiveKey={2} id="uncontrolled-tab-example">
             <Tab eventKey={1} title="Placements">
-                <PlacementTable data={this.props.data}/>
+                <PlacementTable 
+                  data={this.props.data} 
+                  add_placement={this.props.add_placement}
+                  remove_placement={this.props.remove_placement}/>
             </Tab>
             <Tab eventKey={2} title="Publishers">
-                <ContributorTable data={this.props.data}/>
+                <ContributorTable 
+                  data={this.props.data}
+                  add_publisher={this.props.add_publisher}
+                  remove_publisher={this.props.remove_publisher}/>
             </Tab>
       </Tabs>
     )
@@ -201,7 +224,12 @@ class HomeView extends React.Component {
                     <Button type="submit" onClick={this.handleClick.bind(this)} className='btn btn-success'>Submit</Button>
                 </form>
                 <SelectedPlacements placements={ this.props.placements } />
-                <NavDropdown data={this.props.placements }/>
+                <NavDropdown 
+                  data={ this.props.placements } 
+                  add_placement={ this.props.add_placement }
+                  remove_placement={ this.props.remove_placement }
+                  add_publisher={ this.props.add_publisher }
+                  remove_publisher={ this.props.remove_publisher }/>
             </div>
             );
     } 
@@ -210,13 +238,16 @@ class HomeView extends React.Component {
 const mapStateToProps = (state) => {
   return {
     placements:state.placements,
-
   }
 };
 
 const mapDispatchPlacementStateToProps = (dispatch) => {
     return bindActionCreators({
         selected_placements: getPlacements,
+        add_placement: addPlacement,
+        remove_placement: removePlacement,
+        add_publisher:addPublisher,
+        remove_publisher: removePublisher
     },dispatch);
 };
 
