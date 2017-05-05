@@ -4,11 +4,14 @@ import { browserHistory } from 'react-router'
 import makeRootReducer from './reducers'
 import { updateLocation } from './location'
 
+import { createLogger } from 'redux-logger'
+
 export default (initialState = {}) => {
+  const logger = createLogger()
   // ======================================================
   // Middleware Configuration
   // ======================================================
-  const middleware = [thunk]
+  const middleware = [thunk, logger]
 
   // ======================================================
   // Store Enhancers
