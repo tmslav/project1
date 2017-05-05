@@ -10,13 +10,22 @@ import PropTypes from 'prop-types'
 import {getPlacements} from '../../../redux/modules/placements'
 import { Provider } from 'react-redux'
 
-var selected_placements = [];
-
 const statusType = {
   0: 'matching',
   1: 'publisher-submitted',
   2: 'publisher-rejected'
-};
+}
+
+function onRowSelect(row, isSelected, e) {
+  debugger
+}
+
+const selectRowProp = {
+  mode: 'checkbox',
+  clickToSelect: true,
+  bgColor: 'lightblue',
+  onSelect: onRowSelect,
+}
 
 class SelectedPlacements extends React.Component {
   constructor(props){
@@ -37,22 +46,7 @@ class SelectedPlacements extends React.Component {
     return <div></div>
     }
 }
-function onRowSelect(row, isSelected, e) {
-  let rowStr = '';
-  for (const prop in row) {
-    rowStr += prop + ': "' + row[prop] + '"';
-  }
-    selectedPlacementStore.dispatch({
-        type: 'ADD_PLACEMENT',
-        placement: row
-})}
 
-const selectRowProp = {
-  mode: 'checkbox',
-  clickToSelect: true,
-  bgColor: 'lightblue',
-  onSelect: onRowSelect,
-}
 
 class PlacementTable extends React.Component {
   constructor(props) {
