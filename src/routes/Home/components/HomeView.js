@@ -8,7 +8,7 @@ import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import { ControlLabel, FormControl, HelpBlock, FormGroup, Checkbox,Radio, Button, Tabs, Tab } from 'react-bootstrap';
 import PropTypes from 'prop-types'
 import { getInitData, addPlacement, removePlacement,addPublisher,removePublisher} from '../../../redux/modules/placements'
-import { handleArticleSubmit } from '../../../redux/modules/placements'
+import { handleArticleSubmit } from 'modules/placements'
 import { Provider } from 'react-redux'
 
 const statusType = {

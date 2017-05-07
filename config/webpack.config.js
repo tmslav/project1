@@ -4,6 +4,7 @@ const cssnano = require('cssnano')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const project = require('./project.config')
+const path = require("path")
 const debug = require('debug')('app:config:webpack')
 
 const __DEV__ = project.globals.__DEV__
@@ -11,12 +12,14 @@ const __PROD__ = project.globals.__PROD__
 const __TEST__ = project.globals.__TEST__
 
 debug('Creating configuration.')
+console.log(path.resolve('./src/redux'))
+debugger
 const webpackConfig = {
   name    : 'client',
   target  : 'web',
   devtool : project.compiler_devtool,
   resolve : {
-    root       : project.paths.client(),
+    root       : [project.paths.client(), path.resolve('./src/redux')],
     extensions : ['', '.js', '.jsx', '.json']
   },
   module : {}
