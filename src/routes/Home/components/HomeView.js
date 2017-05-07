@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import { ControlLabel, FormControl, HelpBlock, FormGroup, Checkbox,Radio, Button, Tabs, Tab } from 'react-bootstrap';
 import PropTypes from 'prop-types'
-import { getInitData, addPlacement, removePlacement,addPublisher,removePublisher} from '../../../redux/modules/placements'
+import { getInitData, addPlacement, removePlacement,addPublisher,removePublisher} from 'modules/placements'
 import { handleArticleSubmit } from 'modules/placements'
 import { Provider } from 'react-redux'
 
@@ -71,10 +71,17 @@ class PlacementTable extends React.Component {
       expandBy: 'column',  // Currently, available value is row andcolumn, default is row
     }
     if (this.props.data) {
+      //TODO remove this id and add in data
       const data = this.props.data
       data.forEach((column, i) => {
               column["id"] = i
       }, this);
+      this.selectRowProp.selected = this.props.selected ? this.props.selected.placements : []
+      if (this.props.selected)
+        this.selectRowProp.selected.map(i => {
+          this.onRowSelect({id:i},true)
+          return i
+        })
 
       return (
           <div>
@@ -129,6 +136,12 @@ class ContributorTable extends React.Component {
       expandBy: 'column',  // Currently, available value is row and column, default is row
     }
     const data = this.props.data
+    this.selectRowProp.selected = this.props.selected ? this.props.selected.contributors : []
+    if (this.props.selected)
+      this.selectRowProp.selected.map(i => {
+        this.onRowSelect({id:i},true)
+        return i
+      })
     return (
         <div>
           <BootstrapTable data={Boolean(data) ? data : []}
@@ -170,11 +183,13 @@ class NavDropdown extends React.Component {
             <Tab eventKey={1} title="Placements">
                 <PlacementTable 
                   data={this.props.data.placements} 
+                  selected={this.props.load}
                   add_placement={this.props.data.add_placement}
                   remove_placement={this.props.data.remove_placement}/>
             </Tab>
             <Tab eventKey={2} title="Publishers">
                 <ContributorTable 
+                  selected={this.props.load}
                   data={this.props.data.contributors}
                   add_publisher={this.props.data.add_publisher}
                   remove_publisher={this.props.data.remove_publisher}/>
@@ -199,7 +214,6 @@ class HomeView extends React.Component {
         statusText: '',
         userName: ''
     }
-
     handleClick(event) {
         event.preventDefault()
         const articleText = this.articleTitleElement.value
@@ -223,16 +237,16 @@ class HomeView extends React.Component {
                       type="text"
                       label="Article Title"
                       placeholder="Enter article title"
-                      inputRef={(input) => {this.articleTitleElement = input}} />
+                      inputRef={(input) => {this.articleTitleElement = input; input && this.props.load ? input.value=this.props.load.data.title : null}} />
                     <FormGroup controlId="formControlsTextarea">
                       <ControlLabel>Article Description</ControlLabel>
-                      <FormControl inputRef={(input) => {this.articleDescriptionElement = input}}
+                      <FormControl inputRef={(input) => {this.articleDescriptionElement = input; input && this.props.load ? input.value=this.props.load.data.description : null}}
                          componentClass="textarea" 
                          placeholder="Enter article description" />
                     </FormGroup>
                     <Button type="submit" onClick={this.handleClick.bind(this)} className='btn btn-success'>Submit</Button>
                 </form>
-                <NavDropdown data={ this.props }/>
+                <NavDropdown data={ this.props }  {...this.props} />
             </div>
             );
     } 
@@ -241,7 +255,8 @@ class HomeView extends React.Component {
 const mapStateToProps = (state) => {
   return {
     contributors: state.data.contributordata,
-    placements: state.data.placements
+    placements: state.data.placements,
+    load:state.data.load
   }
 }
 
