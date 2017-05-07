@@ -7,7 +7,8 @@ import { bindActionCreators } from 'redux'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import { ControlLabel, FormControl, HelpBlock, FormGroup, Checkbox,Radio, Button, Tabs, Tab } from 'react-bootstrap';
 import PropTypes from 'prop-types'
-import {getPlacements, addPlacement, removePlacement,addPublisher,removePublisher} from '../../../redux/modules/placements'
+import { getInitData, addPlacement, removePlacement,addPublisher,removePublisher} from '../../../redux/modules/placements'
+import { handleArticleSubmit } from '../../../redux/modules/placements'
 import { Provider } from 'react-redux'
 
 const statusType = {
@@ -35,7 +36,6 @@ class SelectedPlacements extends React.Component {
     return <div></div>
     }
 }
-
 
 class PlacementTable extends React.Component {
   constructor(props) {
@@ -70,8 +70,8 @@ class PlacementTable extends React.Component {
       expandRowBgColor: 'rgb(242, 255, 163)',
       expandBy: 'column',  // Currently, available value is row andcolumn, default is row
     }
-    const data = this.props.data.placements
-    if (data) {
+    if (this.props.data) {
+      const data = this.props.data
       data.forEach((column, i) => {
               column["id"] = i
       }, this);
@@ -79,7 +79,7 @@ class PlacementTable extends React.Component {
       return (
           <div>
             <BootstrapTable
-              data = { data }
+              data = { data || [] }
               options={ options }
               selectRow={ this.selectRowProp }>
               <TableHeaderColumn dataField='id' isKey={ true }hidden>ID</TableHeaderColumn>
@@ -127,8 +127,8 @@ class ContributorTable extends React.Component {
     const options = {
       expandRowBgColor: 'rgb(242, 255, 163)',
       expandBy: 'column',  // Currently, available value is row and column, default is row
-    };
-    const data = this.props.data.contributordata
+    }
+    const data = this.props.data
     return (
         <div>
           <BootstrapTable data={Boolean(data) ? data : []}
@@ -169,15 +169,15 @@ class NavDropdown extends React.Component {
       <Tabs defaultActiveKey={2} id="uncontrolled-tab-example">
             <Tab eventKey={1} title="Placements">
                 <PlacementTable 
-                  data={this.props.data} 
-                  add_placement={this.props.add_placement}
-                  remove_placement={this.props.remove_placement}/>
+                  data={this.props.data.placements} 
+                  add_placement={this.props.data.add_placement}
+                  remove_placement={this.props.data.remove_placement}/>
             </Tab>
             <Tab eventKey={2} title="Publishers">
                 <ContributorTable 
-                  data={this.props.data}
-                  add_publisher={this.props.add_publisher}
-                  remove_publisher={this.props.remove_publisher}/>
+                  data={this.props.data.contributors}
+                  add_publisher={this.props.data.add_publisher}
+                  remove_publisher={this.props.data.remove_publisher}/>
             </Tab>
       </Tabs>
     )
@@ -187,20 +187,26 @@ class NavDropdown extends React.Component {
 class HomeView extends React.Component {
     constructor(props){
       super(props)
-      props.selected_placements()
+      props.fillStore()
     }
+
     static propTypes = {
         statusText: PropTypes.string,
-        userName: PropTypes.string
+        userName: PropTypes.string,
     }
+
     static defaultProps = {
         statusText: '',
         userName: ''
     }
+
     handleClick(event) {
         event.preventDefault()
-        var el = event.target
+        const articleText = this.articleTitleElement.value
+        const articleDescriptionText = this.articleDescriptionElement.value 
+        this.props.onSubmitClick({ articleTitle:articleText, articleDescription:articleDescriptionText })
     }
+
     render() {
         return (
             <div className="container">
@@ -216,20 +222,17 @@ class HomeView extends React.Component {
                       id="article_title"
                       type="text"
                       label="Article Title"
-                      placeholder="Enter article title"/>
+                      placeholder="Enter article title"
+                      inputRef={(input) => {this.articleTitleElement = input}} />
                     <FormGroup controlId="formControlsTextarea">
                       <ControlLabel>Article Description</ControlLabel>
-                      <FormControl componentClass="textarea" placeholder="Enter article description" />
+                      <FormControl inputRef={(input) => {this.articleDescriptionElement = input}}
+                         componentClass="textarea" 
+                         placeholder="Enter article description" />
                     </FormGroup>
                     <Button type="submit" onClick={this.handleClick.bind(this)} className='btn btn-success'>Submit</Button>
                 </form>
-                <SelectedPlacements placements={ this.props.placements } />
-                <NavDropdown 
-                  data={ this.props.placements } 
-                  add_placement={ this.props.add_placement }
-                  remove_placement={ this.props.remove_placement }
-                  add_publisher={ this.props.add_publisher }
-                  remove_publisher={ this.props.remove_publisher }/>
+                <NavDropdown data={ this.props }/>
             </div>
             );
     } 
@@ -237,18 +240,20 @@ class HomeView extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    placements:state.placements,
+    contributors: state.data.contributordata,
+    placements: state.data.placements
   }
-};
+}
 
 const mapDispatchPlacementStateToProps = (dispatch) => {
     return bindActionCreators({
-        selected_placements: getPlacements,
+        fillStore: getInitData,
         add_placement: addPlacement,
         remove_placement: removePlacement,
         add_publisher:addPublisher,
-        remove_publisher: removePublisher
-    },dispatch);
-};
+        remove_publisher: removePublisher,
+        onSubmitClick: (article) => handleArticleSubmit(article)
+    },dispatch)
+}
 
 export default connect(mapStateToProps,mapDispatchPlacementStateToProps)(HomeView)
