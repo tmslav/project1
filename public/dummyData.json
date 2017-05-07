@@ -1,2 +1,288 @@
-{"placements" : [{"status": "matching", "count": 2,"target_da_range": "35 - 40", "company_name": "Rehabs"}, {"status":"matching", "count": 2, "target_da_range": "45-50", "company_name":"Rehabs"}, {"status": "matching", "count": 2, "target_da_range": "30 -35", "company_name": "Rehabs"}, {"status": "matching", "count": 2,"target_da_range": "40 - 45", "company_name": "Rehabs"}, {"status":"matching", "count": 2, "target_da_range": "50-60", "company_name":"Rehabs"}, {"status": "matching", "count": 1, "target_da_range": "41 -50", "company_name": "Dejan SEO"}, {"status": "article-requested","count": 1, "target_da_range": "20 - 30", "company_name": "Siftery"},{"status": "publisher-submitted", "count": 3, "target_da_range": "20 -30", "company_name": "Siftery"}, {"status": "matching", "count": 1,"target_da_range": "40 - 50", "company_name": "Siftery"}, {"status":"matching", "count": 8, "target_da_range": "20 - 30", "company_name":"Siftery"}, {"status": "matching", "count": 11, "target_da_range": "30- 40", "company_name": "Siftery"}, {"status": "article-in-review","count": 5, "target_da_range": "20 - 30", "company_name": "Siftery"},{"status": "article-pending-submission", "count": 1,"target_da_range": "20 - 30", "company_name": "Siftery"}, {"status":"publisher-submitted", "count": 2, "target_da_range": "20 - 30","company_name": "Fantasy Footballers"}, {"status": "publisher-submitted", "count": 4, "target_da_range": "30 - 40", "company_name":"Fantasy Footballers"}, {"status": "matching", "count": 2,"target_da_range": "40 - 50", "company_name": "Fantasy Footballers"},{"status": "matching", "count": 5, "target_da_range": "30 - 40","company_name": "Fantasy Footballers"}, {"status": "matching","count": 7, "target_da_range": "20 - 30", "company_name": "Fantasy Footballers"}, {"status": "publisher-rejected", "count": 1,"target_da_range": "20 - 30", "company_name": "Fantasy Footballers"},{"status": "matching", "count": 7, "target_da_range": "40 - 50","company_name": "Classic Cosmetics"}],
-"contributordata":[{"status": "Active Contributor", "url":"http://reallygoodemails.com", "moz_da": 44, "id": 17, "name": "Really Good Emails"}, {"status": "Active Contributor", "url": "http://youknowigotsoul.com/", "moz_da": 38, "id": 115, "name": "You Know I got Soul"}, {"status": "Active Contributor", "url": "http://savvytraveldecisions.com", "moz_da": 11, "id": 336, "name": "Savvy Travel Decisions"}, {"status": "Dead", "url": "http://wymg.com","moz_da": 30, "id": 2252, "name": "100.5 WYMG"}, {"status": "Previous Contributor", "url": "http://neworleansradio.com", "moz_da": 30, "id":1123, "name": "New Orleans Radio"}, {"status": "Dead", "url": "http://bmorons.com", "moz_da": 15, "id": 2629, "name": "Baltimorons"},{"status": "Dead", "url": "http://www.heatherkan.com/", "moz_da": 24,"id": 1887, "name": "Heather Kan"}, {"status": "Payment", "url":"http://jaguda.com", "moz_da": 44, "id": 1607, "name": "Jaguda"},{"status": "Previous Contributor", "url": "http://catecosta.com","moz_da": 23, "id": 1331, "name": "Catecosta"}, {"status": "Payment","url": "http://Homechunk.com", "moz_da": 34, "id": 3050, "name":"Homechunk.com"}, {"status": "Dead", "url": "http://webelieveinstyle.net", "moz_da": 16, "id": 2031, "name": "We BelieveIn Style"}, {"status": "Dead", "url": "http://www.lennysyankees.com/","moz_da": 27, "id": 2102, "name": "lenNY's Yankees"}, {"status":"Legacy Contributor", "url": "http://streethistory.com", "moz_da": 26,"id": 1431, "name": "Street History Blog"}, {"status": "Dead", "url":"http://laurenlindley.com", "moz_da": 35, "id": 2058, "name": "Lauren Lindley Photography"}, {"status": "Previous Contributor", "url":"http://thegolfbiz.com", "moz_da": 16, "id": 1213, "name": "The GolfBiz"}, {"status": "Legacy Contributor", "url": "http://www.milehighhockey.com/", "moz_da": 42, "id": 1530, "name": "Mile HighHockey"}, {"status": "Payment", "url": "http://GizmoChunk.com","moz_da": 31, "id": 3052, "name": "GizmoChunk.com"}, {"status":"Legacy Contributor", "url": "http://www.rawcharge.com/", "moz_da":44, "id": 1408, "name": "Raw Charge"}, {"status": "Dead", "url":"http://subinev.com", "moz_da": 36, "id": 1668, "name": "Subinev"},{"status": "Low Value", "url": "http://djworksmusic.com/", "moz_da":10, "id": 2938, "name": "Djworksmusic"}, {"status": "Dead", "url":"http://tomorrowsverse.com/", "moz_da": 26, "id": 2006, "name":"Tomorrow's Verse"}, {"status": "Low Value", "url": "http://theinhouston.com/", "moz_da": 6, "id": 2791, "name":"Theinhouston"}]}
+{
+    "load": {
+     "contributors":[17,115],
+     "placements":[0,1,2,3],
+     "data":{
+       "title":"Test Title",
+       "description":"Test Description"
+     }
+    },
+    "contributordata": [
+        {
+            "id": 17,
+            "moz_da": 44,
+            "name": "Really Good Emails",
+            "status": "Active Contributor",
+            "url": "http://reallygoodemails.com"
+        },
+        {
+            "id": 115,
+            "moz_da": 38,
+            "name": "You Know I got Soul",
+            "status": "Active Contributor",
+            "url": "http://youknowigotsoul.com/"
+        },
+        {
+            "id": 336,
+            "moz_da": 11,
+            "name": "Savvy Travel Decisions",
+            "status": "Active Contributor",
+            "url": "http://savvytraveldecisions.com"
+        },
+        {
+            "id": 2252,
+            "moz_da": 30,
+            "name": "100.5 WYMG",
+            "status": "Dead",
+            "url": "http://wymg.com"
+        },
+        {
+            "id": 1123,
+            "moz_da": 30,
+            "name": "New Orleans Radio",
+            "status": "Previous Contributor",
+            "url": "http://neworleansradio.com"
+        },
+        {
+            "id": 2629,
+            "moz_da": 15,
+            "name": "Baltimorons",
+            "status": "Dead",
+            "url": "http://bmorons.com"
+        },
+        {
+            "id": 1887,
+            "moz_da": 24,
+            "name": "Heather Kan",
+            "status": "Dead",
+            "url": "http://www.heatherkan.com/"
+        },
+        {
+            "id": 1607,
+            "moz_da": 44,
+            "name": "Jaguda",
+            "status": "Payment",
+            "url": "http://jaguda.com"
+        },
+        {
+            "id": 1331,
+            "moz_da": 23,
+            "name": "Catecosta",
+            "status": "Previous Contributor",
+            "url": "http://catecosta.com"
+        },
+        {
+            "id": 3050,
+            "moz_da": 34,
+            "name": "Homechunk.com",
+            "status": "Payment",
+            "url": "http://Homechunk.com"
+        },
+        {
+            "id": 2031,
+            "moz_da": 16,
+            "name": "We BelieveIn Style",
+            "status": "Dead",
+            "url": "http://webelieveinstyle.net"
+        },
+        {
+            "id": 2102,
+            "moz_da": 27,
+            "name": "lenNY's Yankees",
+            "status": "Dead",
+            "url": "http://www.lennysyankees.com/"
+        },
+        {
+            "id": 1431,
+            "moz_da": 26,
+            "name": "Street History Blog",
+            "status": "Legacy Contributor",
+            "url": "http://streethistory.com"
+        },
+        {
+            "id": 2058,
+            "moz_da": 35,
+            "name": "Lauren Lindley Photography",
+            "status": "Dead",
+            "url": "http://laurenlindley.com"
+        },
+        {
+            "id": 1213,
+            "moz_da": 16,
+            "name": "The GolfBiz",
+            "status": "Previous Contributor",
+            "url": "http://thegolfbiz.com"
+        },
+        {
+            "id": 1530,
+            "moz_da": 42,
+            "name": "Mile HighHockey",
+            "status": "Legacy Contributor",
+            "url": "http://www.milehighhockey.com/"
+        },
+        {
+            "id": 3052,
+            "moz_da": 31,
+            "name": "GizmoChunk.com",
+            "status": "Payment",
+            "url": "http://GizmoChunk.com"
+        },
+        {
+            "id": 1408,
+            "moz_da": 44,
+            "name": "Raw Charge",
+            "status": "Legacy Contributor",
+            "url": "http://www.rawcharge.com/"
+        },
+        {
+            "id": 1668,
+            "moz_da": 36,
+            "name": "Subinev",
+            "status": "Dead",
+            "url": "http://subinev.com"
+        },
+        {
+            "id": 2938,
+            "moz_da": 10,
+            "name": "Djworksmusic",
+            "status": "Low Value",
+            "url": "http://djworksmusic.com/"
+        },
+        {
+            "id": 2006,
+            "moz_da": 26,
+            "name": "Tomorrow's Verse",
+            "status": "Dead",
+            "url": "http://tomorrowsverse.com/"
+        },
+        {
+            "id": 2791,
+            "moz_da": 6,
+            "name": "Theinhouston",
+            "status": "Low Value",
+            "url": "http://theinhouston.com/"
+        }
+    ],
+    "placements": [
+        {
+            "company_name": "Rehabs",
+            "count": 2,
+            "status": "matching",
+            "target_da_range": "35 - 40"
+        },
+        {
+            "company_name": "Rehabs",
+            "count": 2,
+            "status": "matching",
+            "target_da_range": "45-50"
+        },
+        {
+            "company_name": "Rehabs",
+            "count": 2,
+            "status": "matching",
+            "target_da_range": "30 -35"
+        },
+        {
+            "company_name": "Rehabs",
+            "count": 2,
+            "status": "matching",
+            "target_da_range": "40 - 45"
+        },
+        {
+            "company_name": "Rehabs",
+            "count": 2,
+            "status": "matching",
+            "target_da_range": "50-60"
+        },
+        {
+            "company_name": "Dejan SEO",
+            "count": 1,
+            "status": "matching",
+            "target_da_range": "41 -50"
+        },
+        {
+            "company_name": "Siftery",
+            "count": 1,
+            "status": "article-requested",
+            "target_da_range": "20 - 30"
+        },
+        {
+            "company_name": "Siftery",
+            "count": 3,
+            "status": "publisher-submitted",
+            "target_da_range": "20 -30"
+        },
+        {
+            "company_name": "Siftery",
+            "count": 1,
+            "status": "matching",
+            "target_da_range": "40 - 50"
+        },
+        {
+            "company_name": "Siftery",
+            "count": 8,
+            "status": "matching",
+            "target_da_range": "20 - 30"
+        },
+        {
+            "company_name": "Siftery",
+            "count": 11,
+            "status": "matching",
+            "target_da_range": "30- 40"
+        },
+        {
+            "company_name": "Siftery",
+            "count": 5,
+            "status": "article-in-review",
+            "target_da_range": "20 - 30"
+        },
+        {
+            "company_name": "Siftery",
+            "count": 1,
+            "status": "article-pending-submission",
+            "target_da_range": "20 - 30"
+        },
+        {
+            "company_name": "Fantasy Footballers",
+            "count": 2,
+            "status": "publisher-submitted",
+            "target_da_range": "20 - 30"
+        },
+        {
+            "company_name": "Fantasy Footballers",
+            "count": 4,
+            "status": "publisher-submitted",
+            "target_da_range": "30 - 40"
+        },
+        {
+            "company_name": "Fantasy Footballers",
+            "count": 2,
+            "status": "matching",
+            "target_da_range": "40 - 50"
+        },
+        {
+            "company_name": "Fantasy Footballers",
+            "count": 5,
+            "status": "matching",
+            "target_da_range": "30 - 40"
+        },
+        {
+            "company_name": "Fantasy Footballers",
+            "count": 7,
+            "status": "matching",
+            "target_da_range": "20 - 30"
+        },
+        {
+            "company_name": "Fantasy Footballers",
+            "count": 1,
+            "status": "publisher-rejected",
+            "target_da_range": "20 - 30"
+        },
+        {
+            "company_name": "Classic Cosmetics",
+            "count": 7,
+            "status": "matching",
+            "target_da_range": "40 - 50"
+        }
+    ]
+}

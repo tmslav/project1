@@ -15,7 +15,6 @@ class AppContainer extends Component {
 
   render () {
     const { routes, store } = this.props
-    console.log(this)
     return (
       <Provider store={store}>
         <div style={{ height: '100%' }}>
