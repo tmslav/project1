@@ -12,8 +12,6 @@ const __PROD__ = project.globals.__PROD__
 const __TEST__ = project.globals.__TEST__
 
 debug('Creating configuration.')
-console.log(path.resolve('./src/redux'))
-debugger
 const webpackConfig = {
   name    : 'client',
   target  : 'web',
